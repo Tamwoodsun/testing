@@ -22,7 +22,7 @@
           class="nav-item mr-3"
           {% endif %}
           >
-            <a class="nav-link" href={% url "index" %} >Home</a>
+            <a class="nav-link" href={% url 'index' %} >Home</a>
           </li>
           <li {% if 'about' in request.path %}
           class="nav-item active mr-3"
@@ -30,11 +30,15 @@
           class="nav-item mr-3"
           {% endif %}
           >
-            <a class="nav-link" href={% url "about" %} >About</a>
+            <a class="nav-link" href={% url 'about' %} >About</a>
 
           </li>
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="listings.html">Feature Listings</a>
+          <li {% if 'listings' in request.path %}
+          class="nav-item active mr-3" 
+          {% else %}
+          class="nav-item mr-3"
+          {% endif %}>
+            <a class="nav-link" href={% url 'listings' %} >Feature listings</a>
           </li>
         </ul>
 
@@ -49,8 +53,7 @@
 
               <i class="fas fa-sign-in-alt"></i>
 
-              Login</a
-            >
+              Login</a>
           </li>
         </ul>
       </div>
