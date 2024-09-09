@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load humanize %} {% block content %}
 
 <section id="showcase">
       <div class="container text-center">
@@ -115,52 +115,52 @@
         <h3 class="text-center mb-3">Latest Listings</h3>
         <div class="row">
           <!-- Listing 1 -->
+          {% if listings %}
+          <!--for loop to gen items-->
+          {% for listing in listings %}
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="card listing-preview">
               <img
                 class="card-img-top"
-                src="assets/img/homes/home-1.jpg"
-                alt=""
-              />
+                src="{{listing.photo_main.url}}"alt="" >
               <div class="card-img-overlay">
                 <h2>
                   <span class="badge badge-secondary text-white"
-                    >$4,900,000</span
+                    >${{listing.price | intcomma}}</span
                   >
                 </h2>
               </div>
               <div class="card-body">
                 <div class="listing-heading text-center">
-                  <h4 class="text-primary">45 Prince Street</h4>
+                  <h4 class="text-primary">{{listing.title}}</h4>
                   <p>
-                    <i class="fas fa-map-marker text-secondary"></i> Yau Tsim
-                    Mong
+                    <i class="fas fa-map-marker text-secondary"></i> {{listing.district}}
                   </p>
                 </div>
                 <hr />
                 <div class="row py-2 text-secondary">
                   <div class="col-6">
-                    <i class="fas fa-th-large"></i> Sqft: 2500
+                    <i class="fas fa-th-large"></i> sqft: {{listing.sqft}}
                   </div>
                   <div class="col-6">
-                    <i class="fas fa-dumbbell"></i> ClubHouse: 2
+                    <i class="fas fa-dumbbell"></i> clubhouse: {{listing.clubhouse}}
                   </div>
                 </div>
                 <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-bed"></i> Bedrooms: 3
+                  <div class="col-6"> 
+                    <i class="fas fa-bed"></i> bedrooms: {{listing.bedrooms}}
                   </div>
                   <div class="col-6">
-                    <i class="fas fa-bath"></i> Bathrooms: 2
+                    <i class="fas fa-bath"></i> bathrooms: {{listing.bathrooms}}
                   </div>
                 </div>
                 <hr />
                 <div class="row py-2 text-secondary">
-                  <div class="col-6"><i class="fas fa-user"></i> Kyle Chan</div>
+                  <div class="col-6"><i class="fas fa-user"></i> {{listing.realtor}}</div>
                 </div>
                 <div class="row text-secondary pb-2">
                   <div class="col-6">
-                    <i class="fas fa-clock"></i> 5 days ago
+                    <i class="fas fa-clock"></i> {{listing.list_date | timesince}}
                   </div>
                 </div>
                 <hr />
@@ -170,125 +170,18 @@
               </div>
             </div>
           </div>
-
-          <!-- Listing 2 -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card listing-preview">
-              <img
-                class="card-img-top"
-                src="assets/img/homes/home-2.jpg"
-                alt=""
-              />
-              <div class="card-img-overlay">
-                <h2>
-                  <span class="badge badge-secondary text-white"
-                    >$5,500,000</span
-                  >
-                </h2>
-              </div>
-              <div class="card-body">
-                <div class="listing-heading text-center">
-                  <h4 class="text-primary">Hung Hom Estate</h4>
-                  <p>
-                    <i class="fas fa-map-marker text-secondary"></i> Kowloon
-                    City
-                  </p>
-                </div>
-                <hr />
-                <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-th-large"></i> Sqft: 3200
-                  </div>
-                  <div class="col-6">
-                    <i class="fas fa-dumbbell"></i> ClubHouse: 1
-                  </div>
-                </div>
-                <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-bed"></i> Bedrooms: 4
-                  </div>
-                  <div class="col-6">
-                    <i class="fas fa-bath"></i> Bathrooms: 2.5
-                  </div>
-                </div>
-                <hr />
-                <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-user"></i> Mark Hudson
-                  </div>
-                </div>
-                <div class="row text-secondary pb-2">
-                  <div class="col-6">
-                    <i class="fas fa-clock"></i> 5 days ago
-                  </div>
-                </div>
-                <hr />
-                <a href="listing.html" class="btn btn-primary btn-block"
-                  >More Info</a
-                >
-              </div>
-            </div>
+          {% endfor %}
+          <!---end for loop block-->
+          {% else %}
+          <div class="col-md-12">
+            <p>No Listing available</p>
           </div>
-
-          <!-- Listing 3 -->
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card listing-preview">
-              <img
-                class="card-img-top"
-                src="assets/img/homes/home-3.jpg"
-                alt=""
-              />
-              <div class="card-img-overlay">
-                <h2>
-                  <span class="badge badge-secondary text-white"
-                    >$5,800,000</span
-                  >
-                </h2>
-              </div>
-              <div class="card-body">
-                <div class="listing-heading text-center">
-                  <h4 class="text-primary">Mei Foo</h4>
-                  <p>
-                    <i class="fas fa-map-marker text-secondary"></i> Sham Shui
-                    Po
-                  </p>
-                </div>
-                <hr />
-                <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-th-large"></i> Sqft: 3107
-                  </div>
-                  <div class="col-6">
-                    <i class="fas fa-dumbbell"></i> ClubHouse: 0
-                  </div>
-                </div>
-                <div class="row py-2 text-secondary">
-                  <div class="col-6">
-                    <i class="fas fa-bed"></i> Bedrooms: 4
-                  </div>
-                  <div class="col-6">
-                    <i class="fas fa-bath"></i> Bathrooms: 3
-                  </div>
-                </div>
-                <hr />
-                <div class="row py-2 text-secondary">
-                  <div class="col-6"><i class="fas fa-user"></i> Mark Lee</div>
-                </div>
-                <div class="row text-secondary pb-2">
-                  <div class="col-6">
-                    <i class="fas fa-clock"></i> 5 days ago
-                  </div>
-                </div>
-                <hr />
-                <a href="listing.html" class="btn btn-primary btn-block"
-                  >More Info</a
-                >
-              </div>
-            </div>
-          </div>
+          {% endif %}
         </div>
       </div>
     </section>
+
+          
 
     <section id="services" class="py-5 bg-secondary text-white">
       <div class="container">

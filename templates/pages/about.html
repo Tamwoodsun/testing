@@ -45,23 +45,26 @@
             harum perferendis laborum molestias quia.
           </p>
         </div>
+        {% if mvp_realtors %}
         <div class="col-md-4">
           <div class="card">
+            {% for realtor in mvp_realtors %}
             <img
               class="card-img-top"
-              src="assets/img/realtors/kyle.jpg"
+              src="{{realtor.photo.url}}"
               alt="Seller of the month"
             />
             <div class="card-body">
               <h5 class="card-title">Seller Of The Month</h5>
-              <h6 class="text-secondary">Kyle chan</h6>
+              <h6 class="text-secondary">{{realtor.name}}</h6>
               <p class="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-                nesciunt amet, illo itaque similique repellat. content.
+                {{realtor.description}}
               </p>
             </div>
+            {% endfor %}
           </div>
         </div>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -74,7 +77,7 @@
       aperiam, unde aliquid at similique!
     </h4>
     <hr />
-    <a href="listings.html" class="btn btn-secondary text-white btn-lg"
+    <a href={"% url "listings" %} class="btn btn-secondary text-white btn-lg"
       >View Our Featured Listings</a
     >
   </section>
@@ -84,46 +87,29 @@
     <div class="container">
       <h2 class="text-center">Our Team</h2>
       <div class="row text-center">
+        {% if realtors%}
+        {% for realtor in realtors %}
         <div class="col-md-4">
           <img
-            src="assets/img/realtors/kyle.jpg"
+
+            src={{realtor.photo.url}}
             alt=""
             class="rounded-circle mb-3"
           />
-          <h4>Kyle Chan</h4>
+          <h4>{{realtor.name}}</h4>
           <p class="text-success">
             <i class="fas fa-award text-success mb-3"></i> Realtor
           </p>
           <hr />
-          <p><i class="fas fa-phone"></i> (852)-555-5555</p>
-          <p><i class="fas fa-envelope-open"></i> kyle@bcrealestate.co</p>
+          <p><i class="fas fa-phone"></i> {{realtor.phone}}</p>
+          <p><i class="fas fa-envelope-open"></i> {{realtor.email}}</p>
         </div>
-
-        <div class="col-md-4">
-          <img
-            src="assets/img/realtors/mark.jpg"
-            alt=""
-            class="rounded-circle mb-3"
-          />
-          <h4>Mark Lee</h4>
-          <p class="text-success">Realtor</p>
-          <hr />
-          <p><i class="fas fa-phone"></i> (852)-444-4444</p>
-          <p><i class="fas fa-envelope-open"></i> mark@bcrealestate.co</p>
+        {% endfor %}
+        {% else %}
+         <div class="col-md-12">
+          <p>No Realtor available</p>
         </div>
-
-        <div class="col-md-4">
-          <img
-            src="assets/img/realtors/jenny.jpg"
-            alt=""
-            class="rounded-circle mb-3"
-          />
-          <h4>Jenny Cheung</h4>
-          <p class="text-success">Realtor</p>
-          <hr />
-          <p><i class="fas fa-phone"></i> (852)-333-3333</p>
-          <p><i class="fas fa-envelope-open"></i> jenny@bcrealestate.co</p>
-        </div>
+        {% endif %}
       </div>
     </div>
   </section>
