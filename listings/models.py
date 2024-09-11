@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from realtors.models import Realtor
+from listings.choices import district_choices
 
 # Create your models here.
 class Listing(models.Model):
@@ -8,7 +9,7 @@ class Listing(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     street = models.CharField(max_length=200)
-    district = models.CharField(max_length=50)
+    district = models.CharField(max_length=50, choices=district_choices.items())
     description = models.TextField(blank=True)
     price = models.IntegerField()
     bedrooms = models.IntegerField()
