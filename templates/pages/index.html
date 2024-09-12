@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% load humanize %} {% block content %}
+{% extends 'base.html' %} {% load humanize %} 
+<!---add title to the tab---->
+{% block title %} | Welcome {% endblock %}
+{% block content %}
 
 <section id="showcase">
       <div class="container text-center">
@@ -133,7 +136,7 @@
                   </div>
                 </div>
                 <hr />
-                <a href="listing.html" class="btn btn-primary btn-block"
+                <a href={% url 'listing' listing.id %} class="btn btn-primary btn-block"
                   >More Info</a
                 >
               </div>
